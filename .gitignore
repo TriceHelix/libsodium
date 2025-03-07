@@ -24,6 +24,7 @@
 .dirstamp
 .done
 .libs
+.vscode
 /bin/
 /obj/
 Build
