@@ -188,7 +188,7 @@ if(${WIN32})
         SODIUM_DLL_EXPORT
         HAVE_RAISE
     )
-    if(NOT ${BUILD_SHARED_LIBS})
+    if(NOT ${SODIUM_SHARED})
         target_compile_definitions(
             libsodium PUBLIC
             SODIUM_STATIC
