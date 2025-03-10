@@ -161,22 +161,22 @@ set_target_properties(
 
 target_compile_definitions(
     libsodium PRIVATE
-    DEV_MODE=1
-    CONFIGURED=1
-    HAVE_ATOMIC_OPS=1
-    HAVE_C11_MEMORY_FENCES=1
-    HAVE_STDINT_H=1
+    DEV_MODE
+    CONFIGURED
+    HAVE_ATOMIC_OPS
+    HAVE_C11_MEMORY_FENCES
+    HAVE_STDINT_H
 )
 
 if("${CMAKE_C_BYTE_ORDER}" STREQUAL "BIG_ENDIAN")
     target_compile_definitions(
         libsodium PRIVATE
-        NATIVE_BIG_ENDIAN=1
+        NATIVE_BIG_ENDIAN
     )
 elseif("${CMAKE_C_BYTE_ORDER}" STREQUAL "LITTLE_ENDIAN")
     target_compile_definitions(
         libsodium PRIVATE
-        NATIVE_LITTLE_ENDIAN=1
+        NATIVE_LITTLE_ENDIAN
     )
 else()
     message(FATAL_ERROR "Unknown system endianness.")
@@ -185,13 +185,13 @@ endif()
 if(${WIN32})
     target_compile_definitions(
         libsodium PRIVATE
-        SODIUM_DLL_EXPORT=1
-        HAVE_RAISE=1
+        SODIUM_DLL_EXPORT
+        HAVE_RAISE
     )
     if(NOT ${BUILD_SHARED_LIBS})
         target_compile_definitions(
             libsodium PUBLIC
-            SODIUM_STATIC=1
+            SODIUM_STATIC
         )
     endif()
 elseif(${LINUX})
@@ -199,53 +199,53 @@ elseif(${LINUX})
         libsodium PRIVATE
         ASM_HIDE_SYMBOL=.hidden
         TLS=_Thread_local
-        HAVE_CATCHABLE_ABRT=1
-        HAVE_CATCHABLE_SEGV=1
-        HAVE_CLOCK_GETTIME=1
-        HAVE_GETPID=1
-        HAVE_MADVISE=1
-        HAVE_MLOCK=1
-        HAVE_MMAP=1
-        HAVE_MPROTECT=1
-        HAVE_NANOSLEEP=1
-        HAVE_POSIX_MEMALIGN=1
-        HAVE_PTHREAD_PRIO_INHERIT=1
-        HAVE_PTHREAD=1
-        HAVE_RAISE=1
-        HAVE_SYSCONF=1
-        HAVE_SYS_AUXV_H=1
-        HAVE_SYS_MMAN_H=1
-        HAVE_SYS_PARAM_H=1
-        HAVE_SYS_RANDOM_H=1
-        HAVE_WEAK_SYMBOLS=1
+        HAVE_CATCHABLE_ABRT
+        HAVE_CATCHABLE_SEGV
+        HAVE_CLOCK_GETTIME
+        HAVE_GETPID
+        HAVE_MADVISE
+        HAVE_MLOCK
+        HAVE_MMAP
+        HAVE_MPROTECT
+        HAVE_NANOSLEEP
+        HAVE_POSIX_MEMALIGN
+        HAVE_PTHREAD_PRIO_INHERIT
+        HAVE_PTHREAD
+        HAVE_RAISE
+        HAVE_SYSCONF
+        HAVE_SYS_AUXV_H
+        HAVE_SYS_MMAN_H
+        HAVE_SYS_PARAM_H
+        HAVE_SYS_RANDOM_H
+        HAVE_WEAK_SYMBOLS
     )
 elseif(${APPLE})
     target_compile_definitions(
         libsodium PRIVATE
         ASM_HIDE_SYMBOL=.private_extern
         TLS=_Thread_local
-        HAVE_ARC4RANDOM=1
-        HAVE_ARC4RANDOM_BUF=1
-        HAVE_CATCHABLE_ABRT=1
-        HAVE_CATCHABLE_SEGV=1
-        HAVE_CLOCK_GETTIME=1
-        HAVE_GETENTROPY=1
-        HAVE_GETPID=1
-        HAVE_MADVISE=1
-        HAVE_MEMSET_S=1
-        HAVE_MLOCK=1
-        HAVE_MMAP=1
-        HAVE_MPROTECT=1
-        HAVE_NANOSLEEP=1
-        HAVE_POSIX_MEMALIGN=1
-        HAVE_PTHREAD=1
-        HAVE_PTHREAD_PRIO_INHERIT=1
-        HAVE_RAISE=1
-        HAVE_SYSCONF=1
-        HAVE_SYS_MMAN_H=1
-        HAVE_SYS_PARAM_H=1
-        HAVE_SYS_RANDOM_H=1
-        HAVE_WEAK_SYMBOLS=1
+        HAVE_ARC4RANDOM
+        HAVE_ARC4RANDOM_BUF
+        HAVE_CATCHABLE_ABRT
+        HAVE_CATCHABLE_SEGV
+        HAVE_CLOCK_GETTIME
+        HAVE_GETENTROPY
+        HAVE_GETPID
+        HAVE_MADVISE
+        HAVE_MEMSET_S
+        HAVE_MLOCK
+        HAVE_MMAP
+        HAVE_MPROTECT
+        HAVE_NANOSLEEP
+        HAVE_POSIX_MEMALIGN
+        HAVE_PTHREAD
+        HAVE_PTHREAD_PRIO_INHERIT
+        HAVE_RAISE
+        HAVE_SYSCONF
+        HAVE_SYS_MMAN_H
+        HAVE_SYS_PARAM_H
+        HAVE_SYS_RANDOM_H
+        HAVE_WEAK_SYMBOLS
     )
 endif()
 
@@ -253,29 +253,29 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
     if(NOT ${WIN32})
         target_compile_definitions(
             libsodium PRIVATE
-            HAVE_AMD64_ASM=1
-            HAVE_AVX_ASM=1
+            HAVE_AMD64_ASM
+            HAVE_AVX_ASM
         )
     endif()
 
     target_compile_definitions(
         libsodium PRIVATE
-        HAVE_CPUID=1
-        HAVE_MMINTRIN_H=1
-        HAVE_EMMINTRIN_H=1
-        HAVE_PMMINTRIN_H=1
-        HAVE_TMMINTRIN_H=1
-        HAVE_SMMINTRIN_H=1
-        HAVE_AVXINTRIN_H=1
-        HAVE_AVX2INTRIN_H=1
-        HAVE_AVX512FINTRIN_H=1
-        HAVE_WMMINTRIN_H=1
-        HAVE_RDRAND=1
+        HAVE_CPUID
+        HAVE_MMINTRIN_H
+        HAVE_EMMINTRIN_H
+        HAVE_PMMINTRIN_H
+        HAVE_TMMINTRIN_H
+        HAVE_SMMINTRIN_H
+        HAVE_AVXINTRIN_H
+        HAVE_AVX2INTRIN_H
+        HAVE_AVX512FINTRIN_H
+        HAVE_WMMINTRIN_H
+        HAVE_RDRAND
     )
 elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "aarch64")
     target_compile_definitions(
         libsodium PRIVATE
-        HAVE_ARMCRYPTO=1
+        HAVE_ARMCRYPTO
     )
 endif()
 
