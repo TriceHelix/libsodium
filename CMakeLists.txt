@@ -38,6 +38,8 @@ set(
     "crypto_core/hchacha20/core_hchacha20.c"
     "crypto_core/hsalsa20/core_hsalsa20.c"
     "crypto_core/hsalsa20/ref2/core_hsalsa20_ref2.c"
+    "crypto_core/keccak1600/keccak1600.c"
+    "crypto_core/keccak1600/ref/keccak1600_ref.c"
     "crypto_core/salsa/ref/core_salsa_ref.c"
     "crypto_core/softaes/softaes.c"
     "crypto_generichash/crypto_generichash.c"
@@ -53,6 +55,10 @@ set(
     "crypto_hash/sha256/cp/hash_sha256_cp.c"
     "crypto_hash/sha512/hash_sha512.c"
     "crypto_hash/sha512/cp/hash_sha512_cp.c"
+    "crypto_ipcrypt/crypto_ipcrypt.c"
+    "crypto_ipcrypt/ipcrypt_aesni.c"
+    "crypto_ipcrypt/ipcrypt_armcrypto.c"
+    "crypto_ipcrypt/ipcrypt_soft.c"
     "crypto_kdf/crypto_kdf.c"
     "crypto_kdf/blake2b/kdf_blake2b.c"
     "crypto_kdf/hkdf/kdf_hkdf_sha256.c"
@@ -120,6 +126,14 @@ set(
     "crypto_stream/xchacha20/stream_xchacha20.c"
     "crypto_stream/xsalsa20/stream_xsalsa20.c"
     "crypto_verify/verify.c"
+    "crypto_xof/shake128/ref/shake128_ref.c"
+    "crypto_xof/shake128/xof_shake128.c"
+    "crypto_xof/shake256/ref/shake256_ref.c"
+    "crypto_xof/shake256/xof_shake256.c"
+    "crypto_xof/turboshake128/ref/turboshake128_ref.c"
+    "crypto_xof/turboshake128/xof_turboshake128.c"
+    "crypto_xof/turboshake256/ref/turboshake256_ref.c"
+    "crypto_xof/turboshake256/xof_turboshake256.c"
     "randombytes/randombytes.c"
     "randombytes/internal/randombytes_internal_random.c"
     "randombytes/sysrandom/randombytes_sysrandom.c"
@@ -240,6 +254,32 @@ elseif(${APPLE})
         HAVE_POSIX_MEMALIGN
         HAVE_PTHREAD
         HAVE_PTHREAD_PRIO_INHERIT
+        HAVE_RAISE
+        HAVE_SYSCONF
+        HAVE_SYS_MMAN_H
+        HAVE_SYS_PARAM_H
+        HAVE_SYS_RANDOM_H
+        HAVE_WEAK_SYMBOLS
+    )
+elseif(${BSD})
+    target_compile_definitions(
+        libsodium PRIVATE
+        ASM_HIDE_SYMBOL=.hidden
+        TLS=_Thread_local
+        HAVE_ARC4RANDOM
+        HAVE_ARC4RANDOM_BUF
+        HAVE_CATCHABLE_ABRT
+        HAVE_CATCHABLE_SEGV
+        HAVE_CLOCK_GETTIME
+        HAVE_GETPID
+        HAVE_MADVISE
+        HAVE_MLOCK
+        HAVE_MMAP
+        HAVE_MPROTECT
+        HAVE_NANOSLEEP
+        HAVE_POSIX_MEMALIGN
+        HAVE_PTHREAD_PRIO_INHERIT
+        HAVE_PTHREAD
         HAVE_RAISE
         HAVE_SYSCONF
         HAVE_SYS_MMAN_H
