@@ -312,7 +312,7 @@ if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
         HAVE_WMMINTRIN_H
         HAVE_RDRAND
     )
-elseif(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "aarch64")
+elseif(${CMAKE_SYSTEM_PROCESSOR} MATCHES "aarch64|ARM64")
     target_compile_definitions(
         libsodium PRIVATE
         HAVE_ARMCRYPTO
